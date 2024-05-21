@@ -26,7 +26,7 @@ jobs:
 
     - name: Download DesigniteJava
       run: |
-        curl -L -o designite.zip https://designite-tools.com/downloads/DesigniteJava.zip
+        curl -L -o designite.zip https://designite-tools.com/assets/DesigniteJava.jar
         unzip designite.zip -d DesigniteJava
 
     - name: Run DesigniteJava analysis
