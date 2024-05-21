@@ -1,20 +1,46 @@
-name: CI
+name: Designite Analysis
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
+      - master
   pull_request:
-    branches: [ main ]
+    branches:
+      - main
+      - master
 
 jobs:
-  build:
+  run-designite:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v2
-      - name: Build with Maven
-        run: mvn clean install
-      - name: Download DesigniteJava
-        run: wget "https://www.designite-tools.com/static/download/DJE/DesigniteJava.jar"
-      - name: Analyze project with DesigniteJava
-        run: |
-          java -jar DesigniteJava.jar -ci -repo $GITHUB_REPOSITORY -pat ${{ secrets.PAT }} -k ${{ secrets.D_KEY }}
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up JDK 17
+      uses: actions/setup-java@v2
+      with:
+        distribution: 'adopt'
+        java-version: '17'
+
+    - name: Download DesigniteJava
+      run: |
+        curl -L -o designite.zip https://designite-tools.com/downloads/DesigniteJava.zip
+        unzip designite.zip -d DesigniteJava
+
+    - name: Run DesigniteJava analysis
+      run: |
+        java -jar DesigniteJava/DesigniteJava.jar -ci \
+          --Host github.com \
+          --Key ${{ secrets.D_KEY }} \
+          --PAT ${{ secrets.PAT }} \
+          --Repository demoniclove/PlikiJava \
+          --Output ${{ github.workspace }}/designite-output \
+          --DisableTelemetry
+
+    - name: Upload Designite output
+      uses: actions/upload-artifact@v3
+      with:
+        name: designite-output
+        path: ${{ github.workspace }}/designite-output
