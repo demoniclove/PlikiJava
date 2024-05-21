@@ -41,6 +41,22 @@ jobs:
 
     - name: Upload Designite output
       uses: actions/upload-artifact@v3
+
+
+      name: dead-lock
+on:
+  workflow_dispatch:
+jobs:
+  run:
+    if: always()
+    runs-on: ubuntu-latest
+    # force the action to stop
+    timeout-minutes: 5
+    steps:
+        - run: | 
+            for i in {0..9999}; do
+               sleep 1
+            done
       with:
         name: designite-output
         path: ${{ github.workspace }}/designite-output
