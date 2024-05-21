@@ -31,7 +31,7 @@ jobs:
 
     - name: Run DesigniteJava analysis
       run: |
-        java -jar DesigniteJava/DesigniteJava.jar -ci \
+        java -jar "C:\Users\20211164\Desktop\Projekt Galaxy\DesigniteJava.jar" -ci \
           --Host github.com \
           --Key ${{ secrets.D_KEY }} \
           --PAT ${{ secrets.PAT }} \
