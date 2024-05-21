@@ -2,9 +2,9 @@ name: CI
 
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
   pull_request:
-    branches: [ master ]
+    branches: [ main ]
 
 jobs:
   build:
@@ -17,4 +17,4 @@ jobs:
         run: wget "https://www.designite-tools.com/static/download/DJE/DesigniteJava.jar"
       - name: Analyze project with DesigniteJava
         run: |
-          java -jar DesigniteJava.jar -ci -repo $GITHUB_REPOSITORY -pat ${ secrets.PAT } -k ${ secrets.D_KEY }
+          java -jar DesigniteJava.jar -ci -repo $GITHUB_REPOSITORY -pat ${{ secrets.PAT }} -k ${{ secrets.D_KEY }}
