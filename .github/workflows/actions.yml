@@ -22,19 +22,17 @@ jobs:
         distribution: 'adopt'
         java-version: '17'
 
-    - name: Download DesigniteJava
-      run: |
-        curl -L -o DesigniteJava.jar https://designite-tools.com/assets/DesigniteJava.jar
     - name: Run DesigniteJava analysis
       run: |
         mkdir -p ${{ github.workspace }}/designite-output
         java -jar DesigniteJava.jar -ci \
-          --Host github.com \
+          --Host "github.com" \
           --Key ${{ secrets.D_KEY }} \
           --PAT ${{ secrets.PAT }} \
-          --Repository demoniclove/PlikiJava \
+          --Repository "demoniclove/PlikiJava" \
           --Output ${{ github.workspace }}/designite-output \
           --DisableTelemetry
+      
 
     - name: Upload Designite output
       uses: actions/upload-artifact@v3
