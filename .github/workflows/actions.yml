@@ -31,11 +31,10 @@ jobs:
         mkdir -p ${{ github.workspace }}/designite-output
         java -jar DesigniteJava.jar -ci \
           --Host github.com \
-          --Key ${{ secrets.D_KEY }} \
+          --Key ${{ secrets.D_KEY_STUDENT }} \
           --PAT ${{ secrets.PAT }} \
           --Repository demoniclove/PlikiJava \
           --Output ${{ github.workspace }}/designite-output \
-          --DisableTelemetry
       
 
     - name: Upload Designite output
