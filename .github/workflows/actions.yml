@@ -48,3 +48,10 @@ jobs:
       with:
         name: designite-output
         path: ${{ github.workspace }}/designite-output
+        
+
+    - name: Upload Designite outp
+      uses: actions/upload-artifact@v3
+      with:
+        name: designite-output
+        path: ${{ github.workspace }}/PlikiJava
