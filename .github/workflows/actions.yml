@@ -41,7 +41,7 @@ jobs:
           --PAT ${{ secrets.PAT }} \
           --Repository demoniclove/PlikiJava \
           --Input ${{ github.workspace }}/PlikiJava \
-          --Output ${{ github.workspace }}/designite-output \
+          --Output "C:\Users\20211164\Desktop\ProjektGalaxy\designite-output"
           --DisableTelemetry
 
     - name: Upload Designite outp
