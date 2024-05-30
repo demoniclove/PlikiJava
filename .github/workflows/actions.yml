@@ -41,7 +41,7 @@ jobs:
     - name: Run DesigniteJava analysis
       run: |
         mkdir -p ${{ github.workspace }}/designite-output
-        java -jar DesigniteJava.jar -ci --Input ${{ github.workspace }}/PlikiJava --Output ${{ github.workspace }}/designite-output
+        java -jar DesigniteJava.jar -ci --Input ${{ github.workspace }} --Output ${{ github.workspace }}/designite-output
 
     - name: Upload Designite outp
       uses: actions/upload-artifact@v3
