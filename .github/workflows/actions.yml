@@ -24,12 +24,6 @@ jobs:
         distribution: 'adopt'
         java-version: '17'
 
-    - name: Set up Maven
-      uses: actions/setup-java@v2
-      with:
-        distribution: 'adopt'
-        java-version: '17'
-
     - name: Download DesigniteJava
       run: |
         curl -L -o DesigniteJava.jar https://designite-tools.com/assets/DesigniteJava.jar
