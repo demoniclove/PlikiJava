@@ -35,12 +35,7 @@ jobs:
     - name: Run DesigniteJava analysis
       run: |
         mkdir -p ${{ github.workspace }}/designite-output
-        java -jar DesigniteJava.jar -ci \
-          --Host github.com \
-          --Repository demoniclove/PlikiJava \
-          --Input ${{ github.workspace }}/PlikiJava \
-          --Output ${{ github.workspace }}/designite-output \
-          --DisableTelemetry
+        java -jar DesigniteJava.jar -ci --Host github.com --Key ${{ secrets.D_KEY }} --PAT ${{ secrets.PAT }} --Repository demoniclove/PlikiJava --Input ${{ github.workspace }}/PlikiJava --Output ${{ github.workspace }}/designite-output
 
     - name: Upload Designite outp
       uses: actions/upload-artifact@v3
