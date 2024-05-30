@@ -32,6 +32,12 @@ jobs:
       run: |
         git clone https://${{ secrets.PAT }}@github.com/demoniclove/PlikiJava ${{ github.workspace }}/PlikiJava
 
+    - name: Echo cloned repository path
+      run: |
+        echo "Cloned repository path: ${{ github.workspace }}/PlikiJava"
+        ls ${{ github.workspace }}/PlikiJava
+
+
     - name: Run DesigniteJava analysis
       run: |
         mkdir -p ${{ github.workspace }}/designite-output
