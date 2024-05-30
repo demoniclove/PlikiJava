@@ -30,7 +30,7 @@ jobs:
 
     - name: Clone the repository with PAT
       run: |
-        git clone https://${{ secrets.PAT }}@github.com/demoniclove/PlikiJava ${{ github.workspace }}/PlikiJava
+        git clone https://${{ secrets.PAT_STUD }}@github.com/demoniclove/PlikiJava ${{ github.workspace }}/PlikiJava
 
     - name: Echo cloned repository path
       run: |
