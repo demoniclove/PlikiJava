@@ -24,6 +24,12 @@ jobs:
         distribution: 'adopt'
         java-version: '17'
 
+    - name: Set up Maven
+      uses: actions/setup-java@v2
+      with:
+        distribution: 'adopt'
+        java-version: '17'
+
     - name: Download DesigniteJava
       run: |
         curl -L -o DesigniteJava.jar https://designite-tools.com/assets/DesigniteJava.jar
@@ -31,6 +37,11 @@ jobs:
     - name: Clone the repository with PAT
       run: |
         git clone https://${{ secrets.PAT_STUD }}@github.com/demoniclove/PlikiJava ${{ github.workspace }}/PlikiJava
+
+    - name: Build the project with Maven
+      run: |
+        cd ${{ github.workspace }}/PlikiJava
+        mvn clean install
 
     - name: Echo cloned repository path
       run: |
@@ -41,17 +52,10 @@ jobs:
     - name: Run DesigniteJava analysis
       run: |
         mkdir -p ${{ github.workspace }}/designite-output
-        java -jar DesigniteJava.jar -ci --Input ${{ github.workspace }} --Output ${{ github.workspace }}/designite-output
+        java -jar DesigniteJava.jar --Input ${{ github.workspace }} --Output ${{ github.workspace }}/designite-output
 
     - name: Upload Designite outp
       uses: actions/upload-artifact@v3
       with:
         name: designite-output
         path: ${{ github.workspace }}/designite-output
-        
-
-    - name: Upload Designite outp
-      uses: actions/upload-artifact@v3
-      with:
-        name: designite-output
-        path: ${{ github.workspace }}/PlikiJava
